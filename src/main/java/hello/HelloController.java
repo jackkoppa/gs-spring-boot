@@ -2,16 +2,17 @@ package hello;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @RestController
 public class HelloController {
     
-    @RequestMapping("/")
+    @RequestMapping(method = RequestMethod.GET, path = "/")
     public String index() {
         return "Hey it me!";
     }
 
-    @RequestMapping("/hello")
+    @RequestMapping(method = RequestMethod.GET, path = "/hello")
     public String hello() {
         return "Hello it me!";
     }
