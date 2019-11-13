@@ -9,6 +9,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import javax.validation.Valid;
 
+import java.util.Collection;
+import java.util.ArrayList;
+
 @RestController
 public class CandidateController {
 
@@ -21,8 +24,11 @@ public class CandidateController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/candidates")
-    public Iterable<Candidate> getAllCandidates() {
-        return candidateRepository.findAll();
+    public Collection<Candidate> getAllCandidates() {
+        Collection<Candidate> candidateCollection = new ArrayList<Candidate>();
+        Iterable<Candidate> candidates = candidateRepository.findAll();
+        candidates.forEach(candidateCollection::add);
+        return candidateCollection;
     }
 
 
@@ -32,8 +38,11 @@ public class CandidateController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/candidates/{lastName}")
-    public Iterable<Candidate> searchForCandidatesByLastName(@PathVariable String lastName) {
-        return candidateRepository.findByLastName(lastName);
+    public Collection<Candidate> searchForCandidatesByLastName(@PathVariable String lastName) {
+        Collection<Candidate> candidateCollection = new ArrayList<Candidate>();
+        Iterable<Candidate> candidates = candidateRepository.findByLastName(lastName);
+        candidates.forEach(candidateCollection::add);
+        return candidateCollection;
     }
     
 }
