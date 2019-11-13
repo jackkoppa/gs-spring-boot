@@ -33,9 +33,8 @@ public class Candidate {
 
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
-    @ApiModelProperty(required=false, hidden=true, notes = "Id generated during creation")
     private Long id;
-
+    
     private final String firstName;
 
     private final String lastName;
