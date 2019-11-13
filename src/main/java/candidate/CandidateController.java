@@ -1,5 +1,6 @@
 package candidate;
 
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,25 +19,28 @@ public class CandidateController {
     @Autowired
     private CandidateRepository candidateRepository;
     
+    @ApiOperation(value = "helloWorld")
     @RequestMapping(method = RequestMethod.GET, path = "/")
     public String index() {
         return "Hey it me!";
     }
 
+    @ApiOperation(value = "getCandidates")
     @RequestMapping(method = RequestMethod.GET, path = "/candidates")
-    public Collection<Candidate> getAllCandidates() {
+    public Collection<Candidate> getCandidates() {
         Collection<Candidate> candidateCollection = new ArrayList<Candidate>();
         Iterable<Candidate> candidates = candidateRepository.findAll();
         candidates.forEach(candidateCollection::add);
         return candidateCollection;
     }
 
-
+    @ApiOperation(value = "addCandidate")
     @RequestMapping(method = RequestMethod.POST, path = "/candidate")
     public Candidate addCandidate(@Valid @RequestBody Candidate candidate) {
         return candidateRepository.save(candidate);
     }
 
+    @ApiOperation(value = "searchForCandidatesByLastName")
     @RequestMapping(method = RequestMethod.GET, path = "/candidates/{lastName}")
     public Collection<Candidate> searchForCandidatesByLastName(@PathVariable String lastName) {
         Collection<Candidate> candidateCollection = new ArrayList<Candidate>();
