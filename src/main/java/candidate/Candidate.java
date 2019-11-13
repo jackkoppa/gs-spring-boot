@@ -15,18 +15,20 @@ import javax.persistence.Id;
 @Data
 public class Candidate {
 
-    public Candidate(String name, String owner, Number value, String makeModel) {
-        this.name = name;
-        this.owner = owner;
-        this.value = value;
-        this.makeModel = makeModel;
+    public Candidate(String firstName, String lastName, Party party, String electionYear, Double nationalPollingAverage) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.party = party;
+        this.electionYear = electionYear;
+        this.nationalPollingAverage = nationalPollingAverage;
     }
 
     public Candidate() { 
-        this.name = "";
-        this.owner = "";
-        this.value = 0;
-        this.makeModel = "";
+        this.firstName = "";
+        this.lastName = "";
+        this.party = Party.INDEPENDENT;
+        this.electionYear = "";
+        this.nationalPollingAverage = 0.0;
     }
 
     @Id
@@ -34,11 +36,13 @@ public class Candidate {
     @ApiModelProperty(required=false, hidden=true, notes = "Id generated during creation")
     private Long id;
 
-    private final String name;
+    private final String firstName;
 
-    private String owner;
+    private final String lastName;
 
-    private Number value;
+    private Party party;
 
-    private String makeModel;
+    private String electionYear;
+
+    private Double nationalPollingAverage;
 }

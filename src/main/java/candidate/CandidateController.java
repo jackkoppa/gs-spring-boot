@@ -21,19 +21,19 @@ public class CandidateController {
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/candidates")
-    public Iterable<Candidate> getCandidates() {
+    public Iterable<Candidate> getAllCandidates() {
         return candidateRepository.findAll();
     }
 
 
     @RequestMapping(method = RequestMethod.POST, path = "/candidate")
-    public Candidate createQuestion(@Valid @RequestBody Candidate candidate) {
+    public Candidate addCandidate(@Valid @RequestBody Candidate candidate) {
         return candidateRepository.save(candidate);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/candidates/{name}")
-    public Iterable<Candidate> searchForCandidatesByName(@PathVariable String candidateName) {
-        return candidateRepository.findByName(candidateName);
+    @RequestMapping(method = RequestMethod.GET, path = "/candidates/{lastName}")
+    public Iterable<Candidate> searchForCandidatesByLastName(@PathVariable String lastName) {
+        return candidateRepository.findByLastName(lastName);
     }
     
 }

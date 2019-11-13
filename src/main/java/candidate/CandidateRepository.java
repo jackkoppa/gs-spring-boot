@@ -11,5 +11,5 @@ import java.util.List;
 @RepositoryRestResource
 public interface CandidateRepository extends CrudRepository<Candidate, Long> {
     <S extends Candidate> S save(S entity);
-    List<Candidate> findByName(String name);
+    List<Candidate> findByLastName(String lastName);
 }

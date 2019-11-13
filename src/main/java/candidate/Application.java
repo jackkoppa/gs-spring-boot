@@ -37,9 +37,14 @@ public class Application {
   ApplicationRunner init(CandidateRepository repository) {
 
     String[][] data = {
-        {"sea", "Andrewwwwww", "300.12", "NDK"},
-        {"creek", "Andrew", "100.75", "Piranha"},
-        {"loaner", "Andrew", "75", "Necky"}
+        {"Joe", "Biden", "DEMOCRAT", "2020", "26.8"},
+        {"Elizabeth", "Warren", "DEMOCRAT", "2020", "20.8"},
+        {"Bernie", "Sanders", "DEMOCRAT", "2020", "17.0"},
+        {"Pete", "Buttigieg", "DEMOCRAT", "2020", "7.5"},
+        {"Kamala", "Harris", "DEMOCRAT", "2020", "5.5"},
+        {"Donald", "Trump", "REPUBLICAN", "2020", "85.4"},
+        {"Joe", "Walsh", "REPUBLICAN", "2020", "2.2"},
+        {"Bill", "Weld", "REPUBLICAN", "2020", "2.8"},
     };
 
     return args -> {
@@ -48,12 +53,13 @@ public class Application {
           Candidate candidate = new Candidate(
               array[0],
               array[1],
-                  NumberFormat.getInstance().parse(array[2]),
-              array[3]
+              Party.valueOf(array[2]),
+              array[3],
+              Double.parseDouble(array[4])
           );
           repository.save(candidate);
         }
-        catch (ParseException e) {
+        catch (Exception e) {
           e.printStackTrace();
         }
       });
