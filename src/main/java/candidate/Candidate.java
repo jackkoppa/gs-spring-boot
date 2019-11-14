@@ -15,11 +15,11 @@ import javax.persistence.Id;
 @Data
 public class Candidate {
 
-    public Candidate(String firstName, String lastName, Party party, String electionYear, Double nationalPollingAverage) {
+    public Candidate(String firstName, String lastName, Party party, String cycle, Double nationalPollingAverage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.party = party;
-        this.electionYear = electionYear;
+        this.cycle = cycle;
         this.nationalPollingAverage = nationalPollingAverage;
     }
 
@@ -27,7 +27,7 @@ public class Candidate {
         this.firstName = "";
         this.lastName = "";
         this.party = Party.INDEPENDENT;
-        this.electionYear = "";
+        this.cycle = "";
         this.nationalPollingAverage = 0.0;
     }
 
@@ -41,7 +41,7 @@ public class Candidate {
 
     private Party party;
 
-    private String electionYear;
+    private String cycle;
 
     private Double nationalPollingAverage;
 }
